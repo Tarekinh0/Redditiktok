@@ -1,9 +1,12 @@
 import praw
 import re
 import json
+import requests
 
 
-config = json.load(open("config.json"))
+with open('config.json', 'r') as config_file:
+    config = json.load(config_file)
+    
 redditConfig = config['reddit']
 
 
@@ -18,7 +21,8 @@ def fetch_reddit_content(url):
         post_id = url.split('/')[-3]
         post = reddit.submission(id=post_id)
     else:
-        post_id = url.split('/')[-1]
+        url = requests.get(url).url
+        post_id = url.split('/')[-3]
         post = reddit.submission(id=post_id)
     
     # Return the post's title and selftext

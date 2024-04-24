@@ -1,7 +1,7 @@
 from aiohttp import ClientSession
 import httpcore
 import random
-import shutil
+import shutil, os
 from utils.text2mp3 import generate_tts_chunks
 from utils.audio2srt import transcribe_audios
 from utils.audiosrt2mp4 import generate_videos
@@ -14,7 +14,10 @@ from utils.srtGenerator import jsons_to_srts
 setattr(httpcore, 'SyncHTTPTransport', 'AsyncHTTPProxy')
 
 def generate(gender, url):
-    shutil.rmtree('./temp', ignore_errors=False, onerror=None)
+    try:
+        shutil.rmtree('./temp', ignore_errors=False, onerror=None)
+    except IOError as io_err:
+        print(io_err)
 
     title, content = fetch_reddit_content(url)
 
@@ -36,4 +39,14 @@ def generate(gender, url):
 
     video_paths = generate_videos(title, audio_paths, image_paths, srt_paths)
 
-    return video_paths
+    video_hash = random.getrandbits(64)
+    
+    hashed_video_paths = []
+
+    for i, path in enumerate(video_paths):
+        hashed_path = f'generatedVideos/{video_hash}-partie{i+1}.mov'
+        os.rename(path, f'{video_hash}-partie{i+1}.mov')
+        hashed_video_paths.append(hashed_path)
+
+
+    return hashed_video_paths
