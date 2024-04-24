@@ -4,12 +4,17 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 import logging
 import json
+import httpcore
 
 from vidGen import generate
 
 
-config = json.loads(open("config.json"))
+with open('config.json', 'r') as config_file:
+    config = json.load(config_file)
+    
 BOT_TOKEN = config['telegram']["token"]
+
+setattr(httpcore, 'SyncHTTPTransport', 'AsyncHTTPProxy')
 
 
 logging.basicConfig(
@@ -21,7 +26,7 @@ logging.basicConfig(
 async def generate_and_send(update: Update, context: ContextTypes.DEFAULT_TYPE):
     args = context.args
     # Ensure there are enough arguments
-    if len(args) != 2 or args[0] not in ['Male', 'Female'] or not args[1].startswith('https://www.reddit.com/'):
+    if len(args) != 2 or args[0] not in ['man', 'woman'] or not args[1].startswith('https://www.reddit.com/'):
         await context.bot.send_message(chat_id=update.effective_chat.id, text='Usage: /generate [man|woman] [Reddit Post Link]')
         return
 

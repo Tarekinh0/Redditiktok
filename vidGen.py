@@ -37,8 +37,3 @@ def generate(gender, url):
     video_paths = generate_videos(title, audio_paths, image_paths, srt_paths)
 
     return video_paths
-
-gender = "Female"
-url = "https://www.reddit.com/r/AskMeuf/comments/1cbt0pd/estce_quil_me_gaslight_tw_viol/"
-generate(gender, url)
-

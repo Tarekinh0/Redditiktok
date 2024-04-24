@@ -1,3 +1,6 @@
+import httpcore
+setattr(httpcore, 'SyncHTTPTransport', 'AsyncHTTPProxy')
+
 from googletrans import Translator
 import xml.etree.ElementTree as ET
 
