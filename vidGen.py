@@ -48,5 +48,4 @@ def generate(gender, url):
         shutil.move(path, hashed_path)
         hashed_video_paths.append(hashed_path)
 
-
     return hashed_video_paths

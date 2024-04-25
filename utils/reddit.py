@@ -10,6 +10,16 @@ with open('config.json', 'r') as config_file:
     
 redditConfig = config['reddit']
 
+def get_proxies():
+    proxy_link = "https://proxylist.geonode.com/api/proxy-list?limit=10&page=1&sort_by=country&sort_type=asc"
+    proxy_json = requests.get(proxy_link).json()
+    http_proxy = {}
+    proxy_ip = proxy_json["data"][0]["ip"]
+    proxy_port = proxy_json["data"][0]["port"]
+    http_proxy["http"]=f"http://{proxy_ip}:{proxy_port}"
+    return http_proxy
+
+        
 
 def fetch_reddit_content(url):
 
@@ -67,7 +77,8 @@ def scrape_reddit_post(url):
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Firefox/88.0'
     }
     try:
-        response = requests.get(url, headers=headers)
+        get_proxies()
+        response = requests.get(url, headers=headers, proxies = get_proxies())
         response.raise_for_status()  # Raises an HTTPError for bad responses
 
         if "/comments/" in url:
@@ -95,7 +106,7 @@ def scrape_reddit_post(url):
         print(f"An error occurred: {e}")
 
 # Example usage
-# if __name__ == "__main__":
-#     url = 'https://www.reddit.com/r/cybersecurity/comments/1ccmx56/my_it_department_knows_all_our_passwords/'
-#     title, content = scrape_reddit_post(url)
-#     print(f"Title: {title}\nContent: {content}")
+if __name__ == "__main__":
+    url = 'https://www.reddit.com/r/cybersecurity/comments/1ccmx56/my_it_department_knows_all_our_passwords/'
+    title, content = scrape_reddit_post(url)
+    print(f"Title: {title}\nContent: {content}")
