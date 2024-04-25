@@ -6,7 +6,7 @@ mkdir temp
 mkdir templateGamePlayVideos
 sudo chmod +x bot.py
 
-cd templateGamePlayVideo
+cd templateGamePlayVideos
 python ../other_scripts/youtubeDownload.py
 cd ..
 
