@@ -1,5 +1,11 @@
 #! /bin/bash
 
+sudo apt update
+sudo apt install python-is-python3
+sudo apt install python3 
+sudo apt install python3-pip
+sudo apt install firefox
+
 pip install -r requirements.txt
 mkdir generatedVideos
 mkdir temp
