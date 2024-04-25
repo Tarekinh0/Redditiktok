@@ -13,11 +13,11 @@ redditConfig = config['reddit']
 def get_proxies():
     proxy_link = "https://proxylist.geonode.com/api/proxy-list?limit=10&page=1&sort_by=country&sort_type=asc"
     proxy_json = requests.get(proxy_link).json()
-    http_proxy = {}
+    https_proxy = {}
     proxy_ip = proxy_json["data"][0]["ip"]
     proxy_port = proxy_json["data"][0]["port"]
-    http_proxy["http"]=f"http://{proxy_ip}:{proxy_port}"
-    return http_proxy
+    https_proxy["https"]=f"https://{proxy_ip}:{proxy_port}"
+    return https_proxy
 
         
 
