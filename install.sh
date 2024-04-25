@@ -5,7 +5,7 @@ sudo apt install python-is-python3
 sudo apt install python3 
 sudo apt install python3-pip
 sudo apt install xdg-utils
-sudo apt install imagemagick
+sudo apt install imagemagick, libmagick++-dev
 
 
 # installing firefox (not from apt or snap because marionette problems otherwise)
