@@ -7,7 +7,7 @@ mkdir templateGamePlayVideos
 sudo chmod +x bot.py
 
 cd templateGamePlayVideo
-python ../Other\ scripts/youtubeDownload.py
+python ../other_scripts/youtubeDownload.py
 cd ..
 
 sudo echo "PATH/bot.py=PATH:$(pwd)" >> ~/.bashrc
