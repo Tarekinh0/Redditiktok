@@ -7,6 +7,9 @@ sudo apt install python3-pip
 sudo apt install xdg-utils
 sudo apt install imagemagick, libmagick++-dev
 
+sudo sed -i 's/policy domain="coder" rights="none" pattern="PDF"/policy domain="coder" rights="read | write" pattern="PDF"/' /etc/ImageMagick-6/policy.xml
+
+Fuente: https://www.enmimaquinafunciona.com/pregunta/172279/imagemagickconvert-im6q16-no-hay-imagenes-definidas
 
 # installing firefox (not from apt or snap because marionette problems otherwise)
 sudo install -d -m 0755 /etc/apt/keyrings
