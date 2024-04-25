@@ -12,10 +12,10 @@ from tempfile import gettempdir
 with open('config.json', 'r') as config_file:
     config = json.load(config_file)
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "sa-text-to-speech-key.json"
+# os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "sa-text-to-speech-key.json"
 
 
-ttsClient = texttospeech.TextToSpeechClient()
+# ttsClient = texttospeech.TextToSpeechClient()
 
 def generate_tts_chunks(gender, xmls, language='fr'):
 
@@ -31,34 +31,34 @@ def generate_tts_chunks(gender, xmls, language='fr'):
 
 
 # deprecated, the second variable (content) is now an xml elementTree, not a text string
-def old_generate_wav(i, content, gender):
+# def old_generate_wav(i, content, gender):
 
-    if gender == "Male":
-        voice = "fr-FR-Neural2-D"
-    else:
-        voice = "fr-FR-Neural2-E"	
+#     if gender == "Male":
+#         voice = "fr-FR-Neural2-D"
+#     else:
+#         voice = "fr-FR-Neural2-E"	
 
-    synthesisInput = texttospeech.SynthesisInput(text=content)
+#     synthesisInput = texttospeech.SynthesisInput(text=content)
 
-    voice = texttospeech.VoiceSelectionParams(language_code = "fr-FR", name=voice)
+#     voice = texttospeech.VoiceSelectionParams(language_code = "fr-FR", name=voice)
 
-    audio_config = texttospeech.AudioConfig(
-        audio_encoding=texttospeech.AudioEncoding.MP3,
-        speaking_rate = 1.1,
-        pitch = 0.9,
-    )
+#     audio_config = texttospeech.AudioConfig(
+#         audio_encoding=texttospeech.AudioEncoding.MP3,
+#         speaking_rate = 1.1,
+#         pitch = 0.9,
+#     )
 
-    response = ttsClient.synthesize_speech(
-        input = synthesisInput,
-        voice = voice,
-        audio_config=audio_config
-    )
-    path = f"./temp/part{i}.mp3"
-    with open(path, "wb") as output:
-        output.write(response.audio_content)
-        print(f"Audio file written to {path}")
+#     response = ttsClient.synthesize_speech(
+#         input = synthesisInput,
+#         voice = voice,
+#         audio_config=audio_config
+#     )
+#     path = f"./temp/part{i}.mp3"
+#     with open(path, "wb") as output:
+#         output.write(response.audio_content)
+#         print(f"Audio file written to {path}")
 
-    return path
+#     return path
 
 
 
