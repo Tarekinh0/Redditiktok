@@ -26,8 +26,8 @@ logging.basicConfig(
 async def generate_and_send(update: Update, context: ContextTypes.DEFAULT_TYPE):
     args = context.args
     # Ensure there are enough arguments
-    if len(args) != 2 or args[0] not in ['man', 'woman'] or not args[1].startswith('https://www.reddit.com/'):
-        await context.bot.send_message(chat_id=update.effective_chat.id, text='Usage: /generate [man|woman] [Reddit Post Link]')
+    if len(args) != 2 or args[0] not in ['man', 'woman'] or not args[1].startswith('https://www.reddit.com/r/'):
+        await context.bot.send_message(chat_id=update.effective_chat.id, text='Usage: /generate [man|woman] [Reddit Post Link]. Make sure the reddit link starts withh /r')
         return
 
     # Forward the arguments to the vidGen.py script
