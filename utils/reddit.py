@@ -106,7 +106,7 @@ def scrape_reddit_post(url):
         print(f"An error occurred: {e}")
 
 # Example usage
-if __name__ == "__main__":
-    url = 'https://www.reddit.com/r/cybersecurity/comments/1ccmx56/my_it_department_knows_all_our_passwords/'
-    title, content = scrape_reddit_post(url)
-    print(f"Title: {title}\nContent: {content}")
+# if __name__ == "__main__":
+#     url = 'https://www.reddit.com/r/cybersecurity/comments/1ccmx56/my_it_department_knows_all_our_passwords/'
+#     title, content = scrape_reddit_post(url)
+#     print(f"Title: {title}\nContent: {content}")
