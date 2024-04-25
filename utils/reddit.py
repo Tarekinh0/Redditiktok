@@ -2,7 +2,8 @@ import praw
 import re
 import json
 import requests
-
+from bs4 import BeautifulSoup
+from socket import socket
 
 with open('config.json', 'r') as config_file:
     config = json.load(config_file)
@@ -53,3 +54,48 @@ def replace_text(title, text):
         title = re.sub(pattern, replacement, title)
     
     return title, text
+
+def scrape_reddit_post(url):
+
+    if "/comments/" in url:
+        post_id = url.split('/')[-3]
+    else:
+        url = requests.get(url).url
+        post_id = url.split('/')[-3]
+
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Firefox/88.0'
+    }
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()  # Raises an HTTPError for bad responses
+
+        if "/comments/" in url:
+            post_id = url.split('/')[-3]
+        else:
+            url = response.url
+            post_id = url.split('/')[-3]
+        
+        # Parse the content with BeautifulSoup
+        soup = BeautifulSoup(response.content, 'html.parser')
+        title = ''
+        content = ''
+        # Find the post title and content using the appropriate HTML selectors
+        # These selectors are based on Reddit’s current HTML layout and might need updating if the layout changes
+        for item in soup.find_all('h1'):
+            title = title + item.get_text(strip=True)
+        for item in soup.find_all('div', id=f't3_{post_id}-post-rtjson-content'): # id_=f't3_{post_id}-post-rtjson-content'
+            content = content + item.get_text(strip=True)
+        
+        return title, content
+
+    except requests.RequestException as e:
+        print(f"Request failed: {e}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+# Example usage
+# if __name__ == "__main__":
+#     url = 'https://www.reddit.com/r/cybersecurity/comments/1ccmx56/my_it_department_knows_all_our_passwords/'
+#     title, content = scrape_reddit_post(url)
+#     print(f"Title: {title}\nContent: {content}")
