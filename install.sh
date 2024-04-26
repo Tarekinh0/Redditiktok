@@ -9,8 +9,6 @@ sudo apt install imagemagick, libmagick++-dev
 
 sudo sed -i 's/rights="none"/rights="read | write"/' /etc/ImageMagick-6/policy.xml
 
-Fuente: https://www.enmimaquinafunciona.com/pregunta/172279/imagemagickconvert-im6q16-no-hay-imagenes-definidas
-
 # installing firefox (not from apt or snap because marionette problems otherwise)
 sudo install -d -m 0755 /etc/apt/keyrings
 wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
