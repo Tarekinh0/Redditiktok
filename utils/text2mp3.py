@@ -33,7 +33,7 @@ def generate_tts_chunks(gender, xmls, language='fr'):
 # deprecated, the second variable (content) is now an xml elementTree, not a text string
 # def old_generate_wav(i, content, gender):
 
-#     if gender == "Male":
+#     if gender == "man":
 #         voice = "fr-FR-Neural2-D"
 #     else:
 #         voice = "fr-FR-Neural2-E"	
@@ -64,7 +64,7 @@ def generate_tts_chunks(gender, xmls, language='fr'):
 
 def aws_generate_wav(i, content, gender):
 
-    if gender == "Male":
+    if gender == "man":
         voice = "Remi"
     else:
         voice = "Lea"
