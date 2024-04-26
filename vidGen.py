@@ -5,7 +5,7 @@ import shutil, os
 from utils.text2mp3 import generate_tts_chunks
 from utils.audio2srt import transcribe_audios
 from utils.audiosrt2mp4 import generate_videos
-from utils.reddit import replace_text, fetch_reddit_content, scrape_reddit_post
+from utils.reddit import replace_text, fetch_reddit_content
 from utils.getText import translate_text, split_into_chunks
 from utils.getImage import generate_main_images
 from utils.srtGenerator import jsons_to_srts
@@ -19,7 +19,7 @@ def generate(gender, url):
     except IOError as io_err:
         print(io_err)
 
-    title, content = scrape_reddit_post(url)
+    title, content = fetch_reddit_content(url)
 
     title, content = replace_text(title, content)
 
