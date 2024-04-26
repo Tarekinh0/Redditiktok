@@ -33,14 +33,15 @@ async def generate_and_send(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Forward the arguments to the vidGen.py script
     try:
         video_paths = generate(args[0], args[1])
+        await context.bot.send_message(chat_id=update.effective_chat.id, text=f'Videos generated ! We are sending them over !')
         for i, video_path in enumerate(video_paths):
             await context.bot.send_video(write_timeout=1000,
                                              chat_id=update.effective_chat.id, 
                                              video=open(video_path, 'rb'),
                                              caption=f"Here is your generated video number {i+1} out of {len(video_paths)}!")
-        else:
-            # Handle errors from vidGen.py
-            await context.bot.send_message(chat_id=update.effective_chat.id, text=f'Error: We had a problem finding the videos generated.')
+        # else:
+        #     # Handle errors from vidGen.py
+        #     await context.bot.send_message(chat_id=update.effective_chat.id, text=f'Error: We had a problem finding the videos generated.')
     except Exception as e:
         await context.bot.send_message(chat_id=update.effective_chat.id, text=f'Error running vidGen.py: {e}')
 
