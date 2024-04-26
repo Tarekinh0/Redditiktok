@@ -10,14 +10,14 @@ with open('config.json', 'r') as config_file:
     
 redditConfig = config['reddit']
 
-def get_proxies():
-    proxy_link = "https://proxylist.geonode.com/api/proxy-list?limit=10&page=1&sort_by=country&sort_type=asc"
-    proxy_json = requests.get(proxy_link).json()
-    https_proxy = {}
-    proxy_ip = proxy_json["data"][0]["ip"]
-    proxy_port = proxy_json["data"][0]["port"]
-    https_proxy["https"]=f"https://{proxy_ip}:{proxy_port}"
-    return https_proxy
+# def get_proxies():
+#     proxy_link = "https://proxylist.geonode.com/api/proxy-list?limit=10&page=1&sort_by=country&sort_type=asc"
+#     proxy_json = requests.get(proxy_link).json()
+#     https_proxy = {}
+#     proxy_ip = proxy_json["data"][0]["ip"]
+#     proxy_port = proxy_json["data"][0]["port"]
+#     https_proxy["https"]=f"https://{proxy_ip}:{proxy_port}"
+#     return https_proxy
 
         
 
@@ -28,13 +28,16 @@ def fetch_reddit_content(url):
                         user_agent=redditConfig["user_agent"])    
     # Extract the post ID from the URL
     # Fetch the post using praw
-    if "/comments/" in url:
-        post_id = url.split('/')[-3]
-        post = reddit.submission(id=post_id)
-    else:
-        url = requests.get(url).url
-        post_id = url.split('/')[-3]
-        post = reddit.submission(id=post_id)
+    post_id = url.split('/')[-3]
+    post = reddit.submission(id=post_id)
+    
+    # if "/comments/" in url:
+    #     post_id = url.split('/')[-3]
+    #     post = reddit.submission(id=post_id)
+    # else:
+    #     # url = requests.get(url).url
+    #     post_id = url.split('/')[-3]
+    #     post = reddit.submission(id=post_id)
     
     # Return the post's title and selftext
     return post.title, post.selftext
@@ -65,45 +68,46 @@ def replace_text(title, text):
     
     return title, text
 
-def scrape_reddit_post(url):
+# # DEPRECATED
+# def scrape_reddit_post(url):
 
-    if "/comments/" in url:
-        post_id = url.split('/')[-3]
-    else:
-        url = requests.get(url).url
-        post_id = url.split('/')[-3]
+#     if "/comments/" in url:
+#         post_id = url.split('/')[-3]
+#     else:
+#         url = requests.get(url).url
+#         post_id = url.split('/')[-3]
 
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Firefox/88.0'
-    }
-    try:
-        get_proxies()
-        response = requests.get(url, headers=headers, proxies = get_proxies())
-        response.raise_for_status()  # Raises an HTTPError for bad responses
+#     headers = {
+#         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Firefox/88.0'
+#     }
+#     try:
+#         get_proxies()
+#         response = requests.get(url, headers=headers, proxies = get_proxies())
+#         response.raise_for_status()  # Raises an HTTPError for bad responses
 
-        if "/comments/" in url:
-            post_id = url.split('/')[-3]
-        else:
-            url = response.url
-            post_id = url.split('/')[-3]
+#         if "/comments/" in url:
+#             post_id = url.split('/')[-3]
+#         else:
+#             url = response.url
+#             post_id = url.split('/')[-3]
         
-        # Parse the content with BeautifulSoup
-        soup = BeautifulSoup(response.content, 'html.parser')
-        title = ''
-        content = ''
-        # Find the post title and content using the appropriate HTML selectors
-        # These selectors are based on Reddit’s current HTML layout and might need updating if the layout changes
-        for item in soup.find_all('h1'):
-            title = title + item.get_text(strip=True)
-        for item in soup.find_all('div', id=f't3_{post_id}-post-rtjson-content'): # id_=f't3_{post_id}-post-rtjson-content'
-            content = content + item.get_text(strip=True)
+#         # Parse the content with BeautifulSoup
+#         soup = BeautifulSoup(response.content, 'html.parser')
+#         title = ''
+#         content = ''
+#         # Find the post title and content using the appropriate HTML selectors
+#         # These selectors are based on Reddit’s current HTML layout and might need updating if the layout changes
+#         for item in soup.find_all('h1'):
+#             title = title + item.get_text(strip=True)
+#         for item in soup.find_all('div', id=f't3_{post_id}-post-rtjson-content'): # id_=f't3_{post_id}-post-rtjson-content'
+#             content = content + item.get_text(strip=True)
         
-        return title, content
+#         return title, content
 
-    except requests.RequestException as e:
-        print(f"Request failed: {e}")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+#     except requests.RequestException as e:
+#         print(f"Request failed: {e}")
+#     except Exception as e:
+#         print(f"An error occurred: {e}")
 
 # Example usage
 # if __name__ == "__main__":
