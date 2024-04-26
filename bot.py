@@ -45,12 +45,18 @@ async def generate_and_send(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         await context.bot.send_message(chat_id=update.effective_chat.id, text=f'Error running vidGen.py: {e}')
 
-if __name__ == '__main__':
+async def ping(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    pong = "pong"
+    await context.bot.send_message(chat_id=update.effective_chat.id, text=pong)
 
+
+if __name__ == '__main__':
     telegramApp = ApplicationBuilder().token(BOT_TOKEN).build()
-    
-    startHandler = CommandHandler('generate', generate_and_send)
-    telegramApp.add_handler(startHandler)
+    start_handler = CommandHandler('generate', generate_and_send)
+    ping_handler = CommandHandler('ping', ping)
+    telegramApp.add_handler(start_handler)
+    telegramApp.add_handler(ping_handler)
+
 
     telegramApp.run_polling()
 
