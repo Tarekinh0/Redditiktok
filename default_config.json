@@ -9,9 +9,9 @@
                 "instagram":"",
                 "facebook":"",
                 "youtube":{
-                    "API_KEY" : "AIzaSyCkBsYZKTeGp0ovKL9L-M1frGOqXGIegrU",
-                    "client_id" : "1023185302227-39d0i4eavihcu5c3ol9uf5dl3g9mkh6b.apps.googleusercontent.com",
-                    "client_secret" : "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"
+                    "API_KEY" : "",
+                    "client_id" : "",
+                    "client_secret" : ""
                 },
                 "tiktok":""
             }
@@ -25,9 +25,9 @@
                 "instagram":"",
                 "facebook":"",
                 "youtube":{
-                    "API_KEY" : "AIzaSyCkBsYZKTeGp0ovKL9L-M1frGOqXGIegrU",
-                    "client_id" : "1023185302227-39d0i4eavihcu5c3ol9uf5dl3g9mkh6b.apps.googleusercontent.com",
-                    "client_secret" : "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"
+                    "API_KEY" : "",
+                    "client_id" : "",
+                    "client_secret" : ""
                 },
                 "tiktok":""
             }
@@ -41,9 +41,9 @@
                 "instagram":"",
                 "facebook":"",
                 "youtube":{
-                    "API_KEY" : "AIzaSyCkBsYZKTeGp0ovKL9L-M1frGOqXGIegrU",
-                    "client_id" : "1023185302227-39d0i4eavihcu5c3ol9uf5dl3g9mkh6b.apps.googleusercontent.com",
-                    "client_secret" : "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"
+                    "API_KEY" : "",
+                    "client_id" : "",
+                    "client_secret" : ""
                 },
                 "tiktok":""
             }
