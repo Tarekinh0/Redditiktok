@@ -33,7 +33,7 @@ def modify_html(title, i, nb_of_chunks):
 
     # Check if the element was found and modify its content
     if title_tag:
-        title_tag.string = title + f"\nPartie {i} sur {nb_of_chunks}"
+        title_tag.string = title + f"\{i}/{nb_of_chunks}"
     else:
         print("Element not found")
 

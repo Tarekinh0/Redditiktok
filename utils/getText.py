@@ -3,23 +3,33 @@ setattr(httpcore, 'SyncHTTPTransport', 'AsyncHTTPProxy')
 import xml.etree.ElementTree as ET
 import boto3
 import json
+import re
 
 BUCKET_NAME = "tiktelegram-bucket"
-DESTINATION_LANGUAGE = 'fr'
 
 with open('config.json', 'r') as config_file:
     config = json.load(config_file)
 
-def translate_text(title, text):
-    
+def translate_text(gender, language, title, text):
+    destination_language = language["language_code"].split('-')[0]
     comprehend = boto3.client('comprehend', region_name="eu-west-1", aws_access_key_id = config['aws']['key'], aws_secret_access_key = config['aws']['token'])
     response = comprehend.batch_detect_dominant_language(TextList=[title])
     source_language = response["ResultList"][0]["Languages"][0]["LanguageCode"]
 
-    if source_language != DESTINATION_LANGUAGE:
+    if source_language != destination_language:
         translate = boto3.client('translate', region_name="eu-west-1", aws_access_key_id = config['aws']['key'], aws_secret_access_key = config['aws']['token'])
-        title = translate.translate_text(Text=title, SourceLanguageCode=source_language, TargetLanguageCode=DESTINATION_LANGUAGE )["TranslatedText"]
-        text = translate.translate_text(Text=text, SourceLanguageCode=source_language, TargetLanguageCode=DESTINATION_LANGUAGE )["TranslatedText"]
+        title = translate.translate_text(Text=title, SourceLanguageCode=source_language, TargetLanguageCode=destination_language )["TranslatedText"]
+        text = translate.translate_text(Text=text, SourceLanguageCode=source_language, TargetLanguageCode=destination_language )["TranslatedText"]
+
+        if gender == "man":
+            title = re.sub(r'un abruti', 'un connard', title)
+            text = re.sub(r'un abruti', 'un connard', text)
+        else:
+            title = re.sub(r'un abruti', 'une connasse', title)
+            text = re.sub(r'un abruti', 'une connasse', text)
+
+
+
     
     return title, text
 

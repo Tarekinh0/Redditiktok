@@ -7,6 +7,10 @@ sudo apt install python3-pip
 sudo apt install xdg-utils
 sudo apt install imagemagick, libmagick++-dev
 
+pip install --upgrade google-api-python-client
+pip install --upgrade google-auth-oauthlib google-auth-httplib2
+
+
 sudo sed -i 's/rights="none"/rights="read | write"/' /etc/ImageMagick-6/policy.xml
 
 # installing firefox (not from apt or snap because marionette problems otherwise)
@@ -24,6 +28,7 @@ pip install -r requirements.txt
 mkdir generatedVideos
 mkdir temp
 mkdir templateGamePlayVideos
+touch index.txt
 sudo chmod +x bot.py
 
 cd templateGamePlayVideos

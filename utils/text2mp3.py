@@ -17,7 +17,7 @@ with open('config.json', 'r') as config_file:
 
 # ttsClient = texttospeech.TextToSpeechClient()
 
-def generate_tts_chunks(gender, xmls, language='fr'):
+def generate_tts_chunks(language, gender, xmls):
 
     """Generates TTS for each chunk and saves to separate MP3 files."""
     paths = []
@@ -25,7 +25,7 @@ def generate_tts_chunks(gender, xmls, language='fr'):
 
     for i, xml in enumerate(xmls):
         # path = old_generate_wav(i, chunk, voice)
-        path = aws_generate_wav(i, xml, gender)
+        path = aws_generate_wav(language, i, xml, gender)
         paths.append(path)
     return paths
 
@@ -62,13 +62,14 @@ def generate_tts_chunks(gender, xmls, language='fr'):
 
 
 
-def aws_generate_wav(i, content, gender):
+def aws_generate_wav(language, i, content, gender):
 
     if gender == "man":
-        voice = "Remi"
+        voice = language["male_voice"]
     else:
-        voice = "Lea"
+        voice = language["female_voice"]
     
+
 
     content = ET.tostring(content, encoding="ASCII").decode("ASCII")
 

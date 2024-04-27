@@ -1,8 +1,65 @@
-{
+{       
+    "languages":{
+        "fr":{
+            "language_code" : "fr-FR",
+            "male_voice": "Remi",
+            "female_voice": "Lea",
+            "platfroms":{
+                "hashtags" : "#RedditEnFrançais #AstucesReddit #FranceReddit #ContenuViral #CourtesVidéos #HumourReddit #DécouverteReddit #TendancesReddit #Français #VidéoRapide #InsoliteReddit #RedditFR #CultureWeb #CommunautéReddit #YouTubeShortsFrance",
+                "instagram":"",
+                "facebook":"",
+                "youtube":{
+                    "API_KEY" : "AIzaSyCkBsYZKTeGp0ovKL9L-M1frGOqXGIegrU",
+                    "client_id" : "1023185302227-39d0i4eavihcu5c3ol9uf5dl3g9mkh6b.apps.googleusercontent.com",
+                    "client_secret" : "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"
+                },
+                "tiktok":""
+            }
+        },
+        "en":{
+            "language_code" : "en-EN",
+            "male_voice": "Zayd",
+            "female_voice": "Hala",
+            "platfroms":{
+                "hashtags" : "#RedditContent #RedditTips #RedditHumor #ViralContent #ShortVideos #TrendingReddit #RedditDiscoveries #English #QuickVideo #WeirdReddit #RedditCommunity #CultureWeb #OnlineCommunity #RedditTrends #YouTubeShorts",
+                "instagram":"",
+                "facebook":"",
+                "youtube":{
+                    "API_KEY" : "AIzaSyCkBsYZKTeGp0ovKL9L-M1frGOqXGIegrU",
+                    "client_id" : "1023185302227-39d0i4eavihcu5c3ol9uf5dl3g9mkh6b.apps.googleusercontent.com",
+                    "client_secret" : "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"
+                },
+                "tiktok":""
+            }
+        },
+        "ar":{
+            "language_code" : "ar-AE",
+            "male_voice": "Zayd",
+            "female_voice": "Hala",
+            "platfroms":{
+                "hashtags" : "#محتوى_ريديت #نصائح_ريديت #فكاهة_ريديت #محتوى_فيروسي #فيديوهات_قصيرة #اكتشافات_ريديت #عربي #فيديو_سريع #غرائب_ريديت #مجتمع_ريديت #ثقافة_الويب #مجتمع_أونلاين #ترندات_ريديت #يوتيوب_شورتس",
+                "instagram":"",
+                "facebook":"",
+                "youtube":{
+                    "API_KEY" : "AIzaSyCkBsYZKTeGp0ovKL9L-M1frGOqXGIegrU",
+                    "client_id" : "1023185302227-39d0i4eavihcu5c3ol9uf5dl3g9mkh6b.apps.googleusercontent.com",
+                    "client_secret" : "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"
+                },
+                "tiktok":""
+            }
+        }
+    },
+    
     "reddit": {
         "client_id" : "reddit client id",
         "client_secret" : "reddit client secret",
-        "user_agent" : "reddit user agent"
+        "user_agent" : "reddit user agent",
+        "subreddits" : [
+            "List",
+            "Of",
+            "Sub",
+            "Reddits"
+        ]
     },
 
     "telegram" : {
