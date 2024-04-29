@@ -4,9 +4,10 @@ import random
 import shutil, os
 import json
 import utils.utils
-from utils.reddit import fetch_top_posts_in_subreddit
+from utils.classes import Story
+from utils.reddit import fetch_top_posts_in_subreddit, fetch_reddit_content
 from utils.publishing import publish_and_delete_story
-setattr(httpcore, 'SyncHTTPTransport', 'AsyncHTTPProxy')
+# setattr(httpcore, 'SyncHTTPTransport', 'AsyncHTTPProxy')
 
 with open('config.json', 'r') as config_file:
     config = json.load(config_file)
@@ -20,13 +21,13 @@ NUMBER_OF_STROIES_PER_DAY_PER_SUBREDDIT = config["reddit"]["number_of_stories_pe
 def generate():
     utils.utils.erase_temp_folder()
     for subreddit_string in SUBREDDIT_NAMES:
-        stories = fetch_top_posts_in_subreddit(subreddit_string, NUMBER_OF_STROIES_PER_DAY_PER_SUBREDDIT)
+        stories = [Story()]
+        url = "https://www.reddit.com/r/AITAH/comments/1cdt1h6/aitah_for_calling_cows_milk_regular_milk_or_real/"
+        stories.append(fetch_reddit_content(url))
+        # stories = fetch_top_posts_in_subreddit(subreddit_string, NUMBER_OF_STROIES_PER_DAY_PER_SUBREDDIT)
         for story in stories:
-            if story.is_already_done:
-                continue
-            else:
-                with open('index.txt', 'a') as file:
-                    file.write(story.new_hashed_title)
-                publish_and_delete_story(story)
+            with open('index.txt', 'a') as file:
+                file.write(story.new_hashed_title)
+            publish_and_delete_story(story)
 
 generate()

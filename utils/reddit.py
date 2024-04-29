@@ -4,7 +4,7 @@ import json
 import praw.models
 from bs4 import BeautifulSoup
 from socket import socket
-from utils.classes import Story
+import utils.classes
 import hashlib
 import utils
 
@@ -31,7 +31,7 @@ LANGUAGES = config["languages"]
 def fetch_top_posts_in_subreddit(subreddit_string, number_of_stories_per_day_per_subreddit):
     subreddit = reddit.subreddit(subreddit_string)
     top_post = subreddit.top(time_filter="day", limit = number_of_stories_per_day_per_subreddit)
-    stories = []
+    stories = [utils.classes.Story()]
     for post in top_post:
         for language_code, language_details in LANGUAGES.items() :
             new_hashed_title = hashlib.md5(post.title.encode('utf-8')).hexdigest()+f"-{language_code}"
@@ -39,7 +39,7 @@ def fetch_top_posts_in_subreddit(subreddit_string, number_of_stories_per_day_per
             if is_already_done:
                 print(f"The story '{post.title}' was already done in the past.")
             else:
-                story = Story(post.title, post.selftext, language_details, new_hashed_title)
+                story = utils.classes.Story(post.title, post.selftext, language_details, new_hashed_title)
                 stories.append(story)
     return stories
         
@@ -49,17 +49,11 @@ def fetch_reddit_content(url):
     # Fetch the post using praw
     post_id = url.split('/')[-3]
     post = reddit.submission(id=post_id)
-    
-    # if "/comments/" in url:
-    #     post_id = url.split('/')[-3]
-    #     post = reddit.submission(id=post_id)
-    # else:
-    #     # url = requests.get(url).url
-    #     post_id = url.split('/')[-3]
-    #     post = reddit.submission(id=post_id)
-    
-    # Return the post's title and selftext
-    return post.title, post.selftext
+    for language_code, language_details in LANGUAGES.items() :
+        new_hashed_title = hashlib.md5(post.title.encode('utf-8')).hexdigest()+f"-{language_code}"
+        story = utils.classes.Story(post.title, post.selftext, language_details, new_hashed_title)
+
+    return story
 
 def replace_text(title, text):
     # Dictionary of patterns and their replacements
@@ -76,7 +70,8 @@ def replace_text(title, text):
         r"\bESH\b": "Everyone Sucks Here",
         r"\bNAH\b": "No Assholes Here",
         r"\bINFO\b": "Information",
-        r"\bOP\b": "Original Poster",   
+        r"\bOP\b": "Original Poster", 
+        r"\b/\b" : ""  
         # Add more replacements as needed
     }
 
