@@ -39,7 +39,7 @@ def translate_text(gender, language, title, text):
 #     translator = Translator(service_urls=['translate.googleapis.com'])
 #     return translator.translate(title, src="en", dest='fr').text, translator.translate(text, dest='fr').text
 
-def split_into_chunks(title, text, chunk_length=1000):
+def split_into_chunks(title, text, language, chunk_length=1000):
     """Splits text into chunks where each is roughly <= chunk_length characters, 
     trying not to split in the middle of a sentence."""
     sentences = text.split('. ')
@@ -58,13 +58,13 @@ def split_into_chunks(title, text, chunk_length=1000):
     for i in range(len(chunks)):
 
         speak = ET.Element("speak")
-        intro = ET.SubElement(speak, "p").text = f"{title}, partie {i+1} sur {len(chunks)}!"
+        intro = ET.SubElement(speak, "p").text = f"{title}, part {i+1} of {len(chunks)}!"
         content = ET.SubElement(speak, "p").text = chunks[i]
 
         if i == len(chunks)-1:
-            outro = ET.SubElement(speak, "p").text = "Abonnez-vous pour d'autres histoires !"
+            outro = ET.SubElement(speak, "p").text = "Follow for more stories !"
         else:
-            outro = ET.SubElement(speak, "p").text = f"Abonnez-vous pour la partie {i+2} !"
+            outro = ET.SubElement(speak, "p").text = f"Follow for part {i+2} !"
         xmls.append(speak)
 
     
