@@ -59,7 +59,8 @@
             "Of",
             "Sub",
             "Reddits"
-        ]
+        ],
+        "number_of_stories_per_day_per_subreddit" : 1
     },
 
     "telegram" : {
