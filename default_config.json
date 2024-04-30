@@ -4,14 +4,22 @@
             "language_code" : "fr-FR",
             "male_voice": "Remi",
             "female_voice": "Lea",
-            "platfroms":{
+            "platforms":{
                 "hashtags" : "#RedditEnFrançais #AstucesReddit #FranceReddit #ContenuViral #CourtesVidéos #HumourReddit #DécouverteReddit #TendancesReddit #Français #VidéoRapide #InsoliteReddit #RedditFR #CultureWeb #CommunautéReddit #YouTubeShortsFrance",
                 "instagram":"",
                 "facebook":"",
                 "youtube":{
-                    "API_KEY" : "",
-                    "client_id" : "",
-                    "client_secret" : ""
+                    "installed": {
+                        "client_id": "",
+                        "project_id": "",
+                        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                        "token_uri": "https://oauth2.googleapis.com/token",
+                        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+                        "client_secret": "",
+                        "redirect_uris": [
+                            "http://localhost"
+                        ]
+                    }
                 },
                 "tiktok":""
             }
@@ -20,14 +28,22 @@
             "language_code" : "en-EN",
             "male_voice": "Zayd",
             "female_voice": "Hala",
-            "platfroms":{
+            "platforms":{
                 "hashtags" : "#RedditContent #RedditTips #RedditHumor #ViralContent #ShortVideos #TrendingReddit #RedditDiscoveries #English #QuickVideo #WeirdReddit #RedditCommunity #CultureWeb #OnlineCommunity #RedditTrends #YouTubeShorts",
                 "instagram":"",
                 "facebook":"",
                 "youtube":{
-                    "API_KEY" : "",
-                    "client_id" : "",
-                    "client_secret" : ""
+                    "installed": {
+                        "client_id": "",
+                        "project_id": "",
+                        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                        "token_uri": "https://oauth2.googleapis.com/token",
+                        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+                        "client_secret": "",
+                        "redirect_uris": [
+                            "http://localhost"
+                        ]
+                    }
                 },
                 "tiktok":""
             }
@@ -36,14 +52,22 @@
             "language_code" : "ar-AE",
             "male_voice": "Zayd",
             "female_voice": "Hala",
-            "platfroms":{
+            "platforms":{
                 "hashtags" : "#محتوى_ريديت #نصائح_ريديت #فكاهة_ريديت #محتوى_فيروسي #فيديوهات_قصيرة #اكتشافات_ريديت #عربي #فيديو_سريع #غرائب_ريديت #مجتمع_ريديت #ثقافة_الويب #مجتمع_أونلاين #ترندات_ريديت #يوتيوب_شورتس",
                 "instagram":"",
                 "facebook":"",
                 "youtube":{
-                    "API_KEY" : "",
-                    "client_id" : "",
-                    "client_secret" : ""
+                    "installed": {
+                        "client_id": "",
+                        "project_id": "",
+                        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                        "token_uri": "https://oauth2.googleapis.com/token",
+                        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+                        "client_secret": "",
+                        "redirect_uris": [
+                            "http://localhost"
+                        ]
+                    }
                 },
                 "tiktok":""
             }

@@ -39,7 +39,7 @@ def translate_text(gender, language, title, text):
 #     translator = Translator(service_urls=['translate.googleapis.com'])
 #     return translator.translate(title, src="en", dest='fr').text, translator.translate(text, dest='fr').text
 
-def split_into_chunks(title, text, language, chunk_length=1000):
+def split_into_chunks(title, text, chunk_length=1000):
     """Splits text into chunks where each is roughly <= chunk_length characters, 
     trying not to split in the middle of a sentence."""
     sentences = text.split('. ')

@@ -75,3 +75,9 @@ wsproto==1.2.0
 yarl==1.9.4
 flask
 python-telegram-bot
+webdriver_manager
+selenium
+beautifulsoup4
+boto3
+botocore
+oauth2client

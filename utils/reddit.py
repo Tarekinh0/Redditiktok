@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from socket import socket
 import utils.classes
 import hashlib
-import utils
+import utils.utils
 
 with open('config.json', 'r') as config_file:
     config = json.load(config_file)
@@ -31,11 +31,12 @@ LANGUAGES = config["languages"]
 def fetch_top_posts_in_subreddit(subreddit_string, number_of_stories_per_day_per_subreddit):
     subreddit = reddit.subreddit(subreddit_string)
     top_post = subreddit.top(time_filter="day", limit = number_of_stories_per_day_per_subreddit)
-    stories = [utils.classes.Story()]
+    stories = []
     for post in top_post:
         for language_code, language_details in LANGUAGES.items() :
             new_hashed_title = hashlib.md5(post.title.encode('utf-8')).hexdigest()+f"-{language_code}"
             is_already_done = utils.utils.check_if_is_already_done(new_hashed_title)
+            is_already_done = False
             if is_already_done:
                 print(f"The story '{post.title}' was already done in the past.")
             else:

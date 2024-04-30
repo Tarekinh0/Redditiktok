@@ -17,14 +17,12 @@ NUMBER_OF_STROIES_PER_DAY_PER_SUBREDDIT = config["reddit"]["number_of_stories_pe
 
 def generate():
     utils.utils.erase_temp_folder()
-    for subreddit_string in SUBREDDIT_NAMES:
-        stories = [Story()]
-        url = "https://www.reddit.com/r/AITAH/comments/1cdt1h6/aitah_for_calling_cows_milk_regular_milk_or_real/"
-        stories.append(fetch_reddit_content(url))
-        # stories = fetch_top_posts_in_subreddit(subreddit_string, NUMBER_OF_STROIES_PER_DAY_PER_SUBREDDIT)
+    for subreddit_string in SUBREDDIT_NAMES:        
+        stories = fetch_top_posts_in_subreddit(subreddit_string, NUMBER_OF_STROIES_PER_DAY_PER_SUBREDDIT)
         for story in stories:
             with open('index.txt', 'a') as file:
                 file.write(story.new_hashed_title)
+                file.write("\n")
             publish_and_delete_story(story)
 
 generate()

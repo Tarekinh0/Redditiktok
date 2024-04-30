@@ -61,13 +61,13 @@ def process_srt(input_srt_path):
     return input_srt_path
 
 
-def transcribe_audios(audios):
+def transcribe_audios(audios, language_code):
     paths = []
     s3_client = boto3.client('s3', region_name="eu-west-1", aws_access_key_id = config['aws']['key'], aws_secret_access_key = config['aws']['token'])
     transcribe_client = boto3.client('transcribe', region_name="eu-west-1", aws_access_key_id = config['aws']['key'], aws_secret_access_key = config['aws']['token'])
     for i, audio in enumerate(audios):
         s3_client.upload_file(audio, BUCKET_NAME, 'audio.mp3')
-        job_name = transcribe_audio(transcribe_client)
+        job_name = transcribe_audio(transcribe_client, language_code)
         path = f'temp/audio{i}.json'
         s3_client.download_file(BUCKET_NAME, f"{job_name}.json", path)
         # path = process_srt(path)
@@ -80,7 +80,7 @@ def transcribe_audios(audios):
 
 
 
-def transcribe_audio(transcribe_client):
+def transcribe_audio(transcribe_client, language_code):
     hash = random.getrandbits(128)
     job_name = f"TranscriptionJob{hash}"
     try: 
@@ -88,7 +88,7 @@ def transcribe_audio(transcribe_client):
             TranscriptionJobName=job_name,
             Media={'MediaFileUri': f's3://{BUCKET_NAME}/audio.mp3'},
             MediaFormat='mp3',
-            LanguageCode='fr-FR',
+            LanguageCode=language_code,
             OutputBucketName=BUCKET_NAME,
             Subtitles={'Formats': ['srt']}
         )
