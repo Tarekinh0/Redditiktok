@@ -107,6 +107,7 @@
       
 
     "aws" : {
+        "bucket_name" : "example-bucket",
         "key" : "aws key",
         "token" : "aws token"
     }

@@ -8,10 +8,11 @@ import re
 import random
 
 
-BUCKET_NAME = "tiktelegram-bucket"
 
 with open('config.json', 'r') as config_file:
     config = json.load(config_file)
+
+BUCKET_NAME = aws_access_key_id = config['aws']['bucket_name']
 
 def process_srt(input_srt_path):
     def parse_time(time_str):
