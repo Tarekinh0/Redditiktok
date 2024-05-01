@@ -1,11 +1,12 @@
 #! /bin/bash
 
+sudo add-apt-repository main
 sudo apt update
 sudo apt install python-is-python3
 sudo apt install python3 
 sudo apt install python3-pip
 sudo apt install xdg-utils
-sudo apt install imagemagick, libmagick++-dev
+sudo apt install imagemagick libmagick++-dev
 echo "[global]" >> ~/.config/pip/pip.conf
 echo "break-system-packages = true" >> ~/.config/pip/pip.conf
 
@@ -32,14 +33,12 @@ mkdir generatedVideos
 mkdir temp
 mkdir templateGamePlayVideos
 touch index.txt
-sudo chmod +x bot.py
 
 cd templateGamePlayVideos
 python ../other_scripts/youtubeDownload.py
 cd ..
 
-sudo echo "PATH/bot.py=PATH:$(pwd)" >> ~/.bashrc
-sudo echo "./bot.py &" >> ./bashrc
+sudo pip install boto3 auth2client lxml moviepy httpcore praw pysrt --break-system-packages
 
 echo "PLEASE DO NOT FORGET TO FILL IN default_config.json AND RENAMING IT TO config.json "
 
