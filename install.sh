@@ -37,7 +37,7 @@ touch index.txt
 sudo pip install pytube --break-system-packages
 
 cd templateGamePlayVideos
-python ../other_scripts/youtubeDownload.py
+sudo python ../other_scripts/youtubeDownload.py
 cd ..
 
 sudo pip install boto3 oauth2client lxml moviepy httpcore praw pysrt h11 webdriver_manager selenium bs4 aiohttp --break-system-packages
