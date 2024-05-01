@@ -7,8 +7,8 @@ sudo apt install python3-pip
 sudo apt install xdg-utils
 sudo apt install imagemagick, libmagick++-dev
 
-pip install --upgrade google-api-python-client
-pip install --upgrade google-auth-oauthlib google-auth-httplib2
+sudo pip install --upgrade google-api-python-client --break-system-packages
+sudo pip install --upgrade google-auth-oauthlib google-auth-httplib2 --break-system-packages
 
 
 sudo sed -i 's/rights="none"/rights="read | write"/' /etc/ImageMagick-6/policy.xml
@@ -24,7 +24,7 @@ Pin-Priority: 1000
 ' | sudo tee /etc/apt/preferences.d/mozilla
 sudo apt update && sudo apt install firefox
 
-pip install -r requirements.txt
+sudo pip install -r requirements.txt --break-system-packages
 mkdir generatedVideos
 mkdir temp
 mkdir templateGamePlayVideos
