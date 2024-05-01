@@ -25,7 +25,7 @@
             }
         },
         "en":{
-            "language_code" : "en-EN",
+            "language_code" : "en-US",
             "male_voice": "Zayd",
             "female_voice": "Hala",
             "platforms":{
