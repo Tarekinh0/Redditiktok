@@ -38,7 +38,7 @@ cd templateGamePlayVideos
 python ../other_scripts/youtubeDownload.py
 cd ..
 
-sudo pip install boto3 auth2client lxml moviepy httpcore praw pysrt --break-system-packages
+sudo pip install boto3 auth2client lxml moviepy httpcore praw pysrt h11 webdriver_manager selenium ns4 aiohttp --break-system-packages
 
 echo "PLEASE DO NOT FORGET TO FILL IN default_config.json AND RENAMING IT TO config.json "
 
