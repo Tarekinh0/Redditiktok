@@ -6,6 +6,9 @@ sudo apt install python3
 sudo apt install python3-pip
 sudo apt install xdg-utils
 sudo apt install imagemagick, libmagick++-dev
+echo "[global]" >> ~/.config/pip/pip.conf
+echo "break-system-packages = true" >> ~/.config/pip/pip.conf
+
 
 sudo pip install --upgrade google-api-python-client --break-system-packages
 sudo pip install --upgrade google-auth-oauthlib google-auth-httplib2 --break-system-packages
