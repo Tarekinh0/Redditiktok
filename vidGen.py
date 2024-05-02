@@ -23,6 +23,10 @@ def generate():
             with open('index.txt', 'a') as file:
                 file.write(story.new_hashed_title)
                 file.write("\n")
-            publish_and_delete_story(story)
+            try:
+                publish_and_delete_story(story)
+            except:
+                print(f"Unknown error while publishing story {story.title}")
+                continue
 
 generate()
