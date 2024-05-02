@@ -7,6 +7,7 @@ from utils.audio2srt import transcribe_audios
 from utils.audiosrt2mp4 import generate_videos
 import utils.reddit as reddit
 from utils.utils import check_if_is_already_done
+from utils.publishing import publish_and_delete_story
 
 
 with open('config.json', 'r') as config_file:
@@ -74,5 +75,14 @@ class Story:
           self.hashed_video_paths.append(self.hashed_path)
     
       print(f"Videos moved and now have a hashed path")
+
+      print("Publishing and Deleting")
+      publish_and_delete_story(self)
+      print("Published and Deleted")
+
+      with open('index.txt', 'a') as file:
+          file.write(self.new_hashed_title)
+          file.write("\n")
+
 
         

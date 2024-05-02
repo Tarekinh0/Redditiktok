@@ -31,7 +31,6 @@ LANGUAGES = config["languages"]
 def fetch_top_posts_in_subreddit(subreddit_string, number_of_stories_per_day_per_subreddit):
     subreddit = reddit.subreddit(subreddit_string)
     top_post = subreddit.top(time_filter="day", limit = number_of_stories_per_day_per_subreddit)
-    stories = []
     for post in top_post:
         for language_code, language_details in LANGUAGES.items() :
             new_hashed_title = hashlib.md5(post.title.encode('utf-8')).hexdigest()+f"-{language_code}"
@@ -40,10 +39,8 @@ def fetch_top_posts_in_subreddit(subreddit_string, number_of_stories_per_day_per
             if is_already_done:
                 print(f"The story '{post.title}' was already done in the past.")
             else:
-                story = utils.classes.Story(post.title, post.selftext, language_details, new_hashed_title)
-                stories.append(story)
-    return stories
-        
+                story = utils.classes.Story(post.title, post.selftext, language_details, new_hashed_title)   
+                del story     
 
 def fetch_reddit_content(url):
     # Extract the post ID from the URL
