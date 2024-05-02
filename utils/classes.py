@@ -39,7 +39,7 @@ class Story:
       self.new_hashed_title = args[3]
       print(f"Results for story : {self.title} in language {self.language}")
       self.title, self.content = reddit.replace_text(self.title, self.content)
-
+      
       self.is_already_done = check_if_is_already_done(self.new_hashed_title)
 
       self.gender = reddit.gender_detector(self.title, self.content)
@@ -73,6 +73,6 @@ class Story:
           shutil.move(path, self.hashed_path)
           self.hashed_video_paths.append(self.hashed_path)
     
-        print(f"Videos moved and now have a hashed path")
+      print(f"Videos moved and now have a hashed path")
 
         
