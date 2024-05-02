@@ -30,33 +30,41 @@ class YoutubeArgs():
 class Story:
   def __init__(self, *args):
     if len(args) == 0 :
-       pass
+      pass
     else:
       # title, content, language, new_hashed_title
       self.title = args[0]
       self.content = args[1]
       self.language = args[2]
       self.new_hashed_title = args[3]
-
+      print(f"Results for story : {self.title} in language {self.language}")
       self.title, self.content = reddit.replace_text(self.title, self.content)
 
       self.is_already_done = check_if_is_already_done(self.new_hashed_title)
 
       self.gender = reddit.gender_detector(self.title, self.content)
+      print(f"Gender detected to be {self.gender}")
 
       self.xmls, self.nb_of_chunks = split_into_chunks(self.title, self.content)
+      print(f"XML chunks generated")
 
       self.title, self.content = translate_text(self.gender, self.language, self.title, self.content)
+      print(f"Text translated")
 
       self.image_paths = generate_main_images(self.title, self.nb_of_chunks)
+      print(f"Images generated")
 
       self.audio_paths = generate_tts_chunks(self.language, self.gender, self.xmls)
+      print(f"MP3s generated")
 
       self.sub_paths = transcribe_audios(self.audio_paths, self.language["language_code"])
+      print(f"JSONs generated")
 
       self.srt_paths = jsons_to_srts(self.sub_paths)
+      print(f"SRTs generated")
 
       self.video_paths = generate_videos(self.title, self.audio_paths, self.image_paths, self.srt_paths)
+      print(f"Videos generated")
 
       self.hashed_video_paths = []
 
@@ -64,4 +72,7 @@ class Story:
           self.hashed_path = f'generatedVideos/{self.new_hashed_title}-partie{i+1}.mov'
           shutil.move(path, self.hashed_path)
           self.hashed_video_paths.append(self.hashed_path)
+    
+        print(f"Videos moved and now have a hashed path")
+
         
