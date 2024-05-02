@@ -1,5 +1,5 @@
-import httpcore
-setattr(httpcore, 'SyncHTTPTransport', 'AsyncHTTPProxy')
+#import httpcore
+#setattr(httpcore, 'SyncHTTPTransport', 'AsyncHTTPProxy')
 import xml.etree.ElementTree as ET
 import boto3
 import json
