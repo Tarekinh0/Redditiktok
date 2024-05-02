@@ -80,6 +80,8 @@ def create_video_with_audio_and_subtitles(srt_path, image_path, audio_path, outp
 def generate_videos(title, audio_paths, image_paths, srt_paths):
     video_paths = []
     for i in range(len(audio_paths)):  # len(audio_paths) = len(image_paths)
+        if (os.stat(srt_paths[i]).st_size == 0):
+            continue
         video_path = f"./generatedVideos/{title}{i}.mov"
         create_video_with_audio_and_subtitles(srt_paths[i], image_paths[i], audio_paths[i], video_path)
         video_paths.append(video_path)
