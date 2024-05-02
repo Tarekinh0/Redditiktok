@@ -78,8 +78,8 @@ def replace_text(title, text):
 
     # Apply each replacement
     for pattern, replacement in replacements.items():
-        text = re.sub(pattern, replacement, text)
-        title = re.sub(pattern, replacement, title)
+        text = re.sub(pattern, replacement, text, flags=re.IGNORECASE)
+        title = re.sub(pattern, replacement, title, flags=re.IGNORECASE)
     
     return title, text
 
