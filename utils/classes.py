@@ -81,6 +81,7 @@ class Story:
       print("Published and Deleted")
 
       with open('index.txt', 'a') as file:
+          
           file.write(self.new_hashed_title)
           file.write("\n")
 

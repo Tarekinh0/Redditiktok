@@ -15,10 +15,6 @@ SUBREDDIT_NAMES = config["reddit"]["subreddits"]
 NUMBER_OF_STROIES_PER_DAY_PER_SUBREDDIT = config["reddit"]["number_of_stories_per_day_per_subreddit"]
 
 
-def generate():
-    utils.utils.erase_temp_folder()
-    for subreddit_string in SUBREDDIT_NAMES:        
-        fetch_top_posts_in_subreddit(subreddit_string, NUMBER_OF_STROIES_PER_DAY_PER_SUBREDDIT)
-        del stories
-
-generate()
+utils.utils.erase_temp_folder()
+for subreddit_string in SUBREDDIT_NAMES:        
+    fetch_top_posts_in_subreddit(subreddit_string, NUMBER_OF_STROIES_PER_DAY_PER_SUBREDDIT)
