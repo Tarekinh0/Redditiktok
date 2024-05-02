@@ -81,10 +81,10 @@ def publish_story_youtube(story, platform_settings, hashtags):
 
     for i, video in enumerate(story.hashed_video_paths, 1):
         yt_args.file += video
-        yt_args.title += story.title + f"{i}/{len(story.hashed_video_paths)}"
-        yt_args.description += story.title + hashtags
+        yt_args.title += story.title + f"{i}/{len(story.hashed_video_paths)} " + "#Shorts"
+        yt_args.description += story.title + hashtags + " #Shorts"
         # yt_args.category = "42"
-        yt_args.keywords = "#Shorts, " + hashtags.replace(" ", ",")
+        yt_args.keywords = "#Shorts," + hashtags.replace(" ", ",")
         yt_args.privacyStatus = "public"
         
         youtube = get_authenticated_service(yt_args)
