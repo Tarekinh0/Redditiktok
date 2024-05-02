@@ -37,7 +37,7 @@ class Story:
       self.content = args[1]
       self.language = args[2]
       self.new_hashed_title = args[3]
-      print(f"Results for story : {self.title} in language {self.language}")
+      print(f"Results for story : {self.title} in language {self.language['language_code']}")
       self.title, self.content = reddit.replace_text(self.title, self.content)
       
       self.is_already_done = check_if_is_already_done(self.new_hashed_title)
